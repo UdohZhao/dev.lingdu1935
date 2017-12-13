@@ -1,0 +1,38 @@
+<include file="./Apps/Home/View/Common/layouts/header.html" />
+<link rel="stylesheet" type="text/css" href="/Apps/Home/View/Common/css/svmerchandise.css">
+<include file="./Apps/Home/View/Common/layouts/nav.html" />
+<div class="row" id="simplegraph">
+<img src="{$dataSvm.banner_path}" style="width:100%;" />
+</div>
+<div class="row">
+  <div class="col-md-12 singlekind">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="col-md-7 singlekindtitle">
+          <h3>{$dataSvm.show_title}</h3>
+          <p>{$dataSvm.descriptionss}</p>
+      </div>
+      <div class="col-md-3 singlekindimg">
+        <img src="{$dataSvm.merchandise_path}"/>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <ul class="list-inline newarrival">
+        <foreach name="dataSvma" item="vo">
+          <li class="col-md-6">
+            <img src="{$vo.picture_path}">
+            <h4>{$vo.title}</h4>
+            <p><strong style="font-size:16px;color:#C40000;">¥{$vo.promotion_price}</strong></p>
+          </li>
+        </foreach>
+        </ul>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<include file="./Apps/Home/View/Common/layouts/ad.html" />
+<include file="./Apps/Home/View/Common/layouts/footer.html" />

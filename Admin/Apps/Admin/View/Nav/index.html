@@ -1,0 +1,109 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 导航管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"><if condition="$data">修改<else/>添加</if>导航</h3>
+        </div>
+        <div class="panel-body">
+           <form id="navForm" class="form-horizontal" action="/Admin/Nav/index" method="post">
+           <input type="hidden" name="id" value="{$data['id']}"/>
+           <input type="hidden" name="type" value="{$data['type']}"/>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">导航名称</label>
+              <div class="col-sm-10">
+                <input type="text" name="cname" class="form-control" id="inputEmail3" placeholder="请输入导航名称" value="{$data['cname']}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">类型</label>
+              <div class="col-sm-10">
+              <if condition="$data">
+                <div class="radio">
+                  <label>
+                  <p class="text-danger">
+                    <eq name="data.type" value="1">全部商品</eq>
+                    <eq name="data.type" value="2">单种商品</eq>
+                    <eq name="data.type" value="3">列表页</eq>
+                    <eq name="data.type" value="4">单页面</eq>
+                    <eq name="data.type" value="5">热销榜单</eq>
+                    <eq name="data.type" value="6">新品上市</eq>
+                  </p>
+                </label>
+                 </div>
+              <else/>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="1">
+                    全部商品
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="2">
+                    单种商品
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="5">
+                    热销榜单
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="6">
+                    新品上市
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="3">
+                    列表页
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="type" id="optionsRadios1" value="4">
+                    单页面
+                  </label>
+                </div>
+              </if>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
+              <div class="col-sm-10">
+                <input type="text" name="sort" class="form-control" id="inputEmail3" placeholder="数字越小越靠前，如果不输入则默认为0" value="{$data['sort']}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
+              <div class="col-sm-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="status" id="optionsRadios1" value="1" <if condition="$data['status'] eq 1">checked<else/>checked</if> >
+                    显示
+                  </label>
+                  &nbsp;&nbsp;
+                  <label>
+                    <input type="radio" name="status" id="optionsRadios1" value="2" <if condition="$data['status'] eq 2">checked</if> >
+                    隐藏
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+<script src="/Admin/Apps/Admin/View/validate/nav.js"></script>
+

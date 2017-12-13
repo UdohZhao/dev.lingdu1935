@@ -1,0 +1,43 @@
+<include file="./Apps/Home/View/Common/layouts/header.html" />
+<link rel="stylesheet" type="text/css" href="/Apps/Home/View/Common/css/allproducts.css">
+<include file="./Apps/Home/View/Common/layouts/nav.html" />
+<div class="row" id="simplegraph">
+<img src="{$dataAllp.banner_path}" style="width:100%;" />
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <p id="newline">
+        <em><span style="font-size:26px;color:#C40000;">{$dataAllp.show_title}</span></em>
+      </p>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <div class="col-md-2 allmenu">
+        <ul class="nav nav-pills nav-stacked">
+          <foreach name="dataMc" item="vo" key="k">
+            <li role="presentation" <if condition="$dataMc[$k]['id'] eq $mcid">class="active"</if> ><a href="/Allproducts/index/id/{$id}/mcid/{$vo.id}">{$vo.category_name}</a></li>
+          </foreach>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <ul class="list-inline newarrival">
+        <foreach name="dataMa" item="vo">
+          <li class="col-md-6">
+            <img src="{$vo.picture_path}">
+            <h4>{$vo.title}</h4>
+            <p><strong style="font-size:16px;color:#C40000;">¥{$vo.promotion_price}</strong>&nbsp;&nbsp;&nbsp;<del>¥{$vo.original_cost}</del></p>
+          </li>
+        </foreach>
+        </ul>
+    </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<include file="./Apps/Home/View/Common/layouts/ad.html" />
+<include file="./Apps/Home/View/Common/layouts/footer.html" />

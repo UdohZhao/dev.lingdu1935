@@ -1,0 +1,65 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 产品类别管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">产品类别列表</h3>
+        </div>
+        <div class="panel-body">
+        <form class="form-inline" action="/Admin/Mcategories/listss" method="post">
+          <div class="form-group" style="float:right;margin-bottom: 20px;">
+            <input type="text" name="search" class="form-control" id="inputPassword2" placeholder="请输入搜索关键字">
+          <button type="submit" class="btn btn-default">确定</button>
+          </div>
+        </form>
+        <ul class="nav nav-tabs">
+        <foreach name="dataNav" item="vo" key="k">
+          <li role="presentation" <if condition="$nid eq $dataNav[$k]['id']">class="active"</if> ><a href="/Admin/Mcategories/listss/id/{$vo.id}">{$vo.cname}</a></li>
+        </foreach>
+        </ul>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>时间</th>
+                <th>类别名称</th>
+                <th>排序</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+                <foreach name="dataMc" item="vo">
+                <tr>
+                  <td></td>
+                  <td>{$vo.ctime|date='Y/m/d H:i:s',###}</td>
+                  <td>{$vo.category_name}</td>
+                  <td>{$vo.sort}</td>
+                  <td>
+                    <eq name="vo.status" value="1"><p class="text-success">显示</p></eq>
+                    <eq name="vo.status" value="2"><p class="text-danger">隐藏</p></eq>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-primary btn-xs" onclick="javascript:window.location.href = '/Admin/Mcategories/index/id/{$vo.id}' ">修改</button>
+                      <button type="button" class="btn btn-primary btn-xs">删除</button>
+                      <button type="button" class="btn btn-link" onclick="javascript:window.location.href = '/Admin/Product/listssMc/id/{$vo.id}' ">产品列表</button>
+                  </td>
+                </tr>
+                </foreach>
+            </tbody>
+          </table>
+          <div style="float:right;">
+            {$page}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+

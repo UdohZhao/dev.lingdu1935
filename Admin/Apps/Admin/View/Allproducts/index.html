@@ -1,0 +1,115 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+<script type="text/javascript">
+  //图片上传预览    IE是用了滤镜。
+  function previewImage(file)
+  {
+    var MAXWIDTH  = 260;
+    var MAXHEIGHT = 180;
+    var div = document.getElementById('preview');
+    if (file.files && file.files[0])
+    {
+        div.innerHTML ='<img id=imghead>';
+        var img = document.getElementById('imghead');
+        img.onload = function(){
+          var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+          img.width  =  rect.width;
+          img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+          img.style.marginTop = rect.top+'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt){img.src = evt.target.result;}
+        reader.readAsDataURL(file.files[0]);
+    }
+    else //兼容IE
+    {
+      var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+      file.select();
+      var src = document.selection.createRange().text;
+      div.innerHTML = '<img id=imghead>';
+      var img = document.getElementById('imghead');
+      img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+      var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+      status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+      div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+    }
+  }
+  function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+      var param = {top:0, left:0, width:width, height:height};
+      if( width>maxWidth || height>maxHeight )
+      {
+          rateWidth = width / maxWidth;
+          rateHeight = height / maxHeight;
+
+          if( rateWidth > rateHeight )
+          {
+              param.width =  maxWidth;
+              param.height = Math.round(height / rateWidth);
+          }else
+          {
+              param.width = Math.round(width / rateHeight);
+              param.height = maxHeight;
+          }
+      }
+
+      param.left = Math.round((maxWidth - param.width) / 2);
+      param.top = Math.round((maxHeight - param.height) / 2);
+      return param;
+  }
+</script>
+
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 站点导航管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">配置全部产品页面</h3>
+        </div>
+        <div class="panel-body">
+          <form id="allproductsForm" class="form-horizontal" action="/Admin/Allproducts/index/id/{$data['id']}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$dataAp['id']}"/>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">导航类别</label>
+              <div class="col-sm-10">
+                <p class="text-danger col-sm-2 control-label">{$data['cname']}</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">封面图片</label>
+              <div class="col-sm-10">
+              <if condition="$dataAp['banner_path']">
+                <input type="hidden" name="banner_path" value="{$dataAp['banner_path']}">
+                <input type="file" name="bannerPath" onchange="previewImage(this)" id="exampleInputFile">
+                <p class="text-danger">*封面图片尺寸1920x450最佳</p>
+              <else/>
+                <input type="file" name="banner_path" onchange="previewImage(this)" id="exampleInputFile" value="{$dataAp['banner_path']}">
+                <p class="text-danger">*封面图片尺寸1920x450最佳</p>
+              </if>
+              <div id="preview">
+                  <img id="imghead" width=500 height=100 border=0 src='{$dataAp["banner_path"]}'>
+              </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">展示标题</label>
+              <div class="col-sm-10">
+                <input type="text" name="show_title" class="form-control" id="inputEmail3" placeholder="请输入展示标题" value="{$dataAp['show_title']}">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+<script src="/Admin/Apps/Admin/View/validate/allproducts.js"></script>

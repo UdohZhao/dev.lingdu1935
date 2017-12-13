@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-2" id="navlogo">
+      <a href="/"><img src="{$dataSite.logo_path}"/></a>
+  </div>
+  <div class="col-md-7" id="navpills">
+      <ul class="nav nav-pills" id="navul">
+        <li role="presentation" <if condition="$nid eq 'index'">class="active"</if> ><a href="/">首页</a></li>
+        <foreach name="dataNav" item="vo" key="k">
+          <li role="presentation" <if condition=" $dataNav[$k]['id'] eq $nid ">class="active"</if> ><a href="{$vo.jumpUrl}">{$vo.cname}</a></li>
+        </foreach>
+      </ul>
+  </div>
+  <div class="col-md-3 aiimg">
+    <img src="/Apps/Home/View/Common/img/tel.jpg">
+  </div>
+</div>
+
+

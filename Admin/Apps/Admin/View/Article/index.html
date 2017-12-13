@@ -1,0 +1,80 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 文章管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">发布文章</h3>
+        </div>
+        <div class="panel-body">
+           <form class="form-horizontal" action="/Admin/Article/index" method="post">
+            <input type="hidden" name="id" value="{$data.id}"/>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">文章标题</label>
+                <div class="col-sm-10">
+                  <input type="text" name="title" class="form-control" id="inputEmail3" placeholder="请输入文章标题" value="{$data.title}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">导航类别</label>
+                <div class="col-sm-10">
+                  <select class="form-control" name="nid">
+                  <foreach name="dataNav" item="vo" key="k">
+                    <option value="{$vo.id}" <if condition="$dataNav[$k]['id'] eq $data['nid']">selected</if> >{$vo.cname}</option>
+                  </foreach>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">文章内容</label>
+                <div class="col-sm-10">
+                  <!-- 加载编辑器的容器 -->
+                  <script id="container" name="content" type="text/plain" style="width:100%;height:300px;">{$data.content}</script>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
+                <div class="col-sm-10">
+                  <input type="text" name="sort" class="form-control" id="inputEmail3" placeholder="数字越小越靠前，如果不输入则默认为0" value="{$data.sort}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-10">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="status" id="optionsRadios1" value="1" <if condition="$data['status'] eq 1">checked<else/>checked</if> >
+                      显示
+                    </label>
+                    &nbsp;&nbsp;
+                    <label>
+                      <input type="radio" name="status" id="optionsRadios1" value="2" <if condition="$data['status'] eq 2">checked</if> >
+                      隐藏
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">提 交</button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+<!-- 配置文件 -->
+<script type="text/javascript" src="/Public/common/UEditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/common/UEditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+</script>

@@ -1,0 +1,159 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+<script type="text/javascript">
+  //图片上传预览    IE是用了滤镜。
+  function previewImage(file)
+  {
+    var MAXWIDTH  = 260;
+    var MAXHEIGHT = 180;
+    var div = document.getElementById('preview');
+    if (file.files && file.files[0])
+    {
+        div.innerHTML ='<img id=imghead>';
+        var img = document.getElementById('imghead');
+        img.onload = function(){
+          var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+          img.width  =  rect.width;
+          img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+          img.style.marginTop = rect.top+'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt){img.src = evt.target.result;}
+        reader.readAsDataURL(file.files[0]);
+    }
+    else //兼容IE
+    {
+      var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+      file.select();
+      var src = document.selection.createRange().text;
+      div.innerHTML = '<img id=imghead>';
+      var img = document.getElementById('imghead');
+      img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+      var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+      status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+      div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+    }
+  }
+  function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+      var param = {top:0, left:0, width:width, height:height};
+      if( width>maxWidth || height>maxHeight )
+      {
+          rateWidth = width / maxWidth;
+          rateHeight = height / maxHeight;
+
+          if( rateWidth > rateHeight )
+          {
+              param.width =  maxWidth;
+              param.height = Math.round(height / rateWidth);
+          }else
+          {
+              param.width = Math.round(width / rateHeight);
+              param.height = maxHeight;
+          }
+      }
+
+      param.left = Math.round((maxWidth - param.width) / 2);
+      param.top = Math.round((maxHeight - param.height) / 2);
+      return param;
+  }
+</script>
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 产品管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">产品发布</h3>
+        </div>
+        <div class="panel-body">
+          <form id="productForm" class="form-horizontal" action="/Admin/Product/index" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{$data.id}"/>
+          <input type="hidden" name="type" value="{$type}"/>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">产品名称</label>
+              <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" placeholder="请输入产品名称" value="{$data.title}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label"><span class="text-danger">「{$navName}」</span></label>
+              <div class="col-sm-10">
+                <select class="form-control" name="mcid">
+                  <option value="0">请按需要选择</option>
+                <foreach name="dataMc" item="vo" key="k">
+                  <option value="{$vo.id}" <if condition="$data.mcid eq $dataMc[$k]['id']">selected</if> >{$vo.category_name}</option>
+                </foreach>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">单类产品</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="svmid">
+                  <option value="0">请按需要选择</option>
+                <foreach name="dataSvm" item="vo" key="k">
+                  <option value="{$vo.id}" <if condition="$data.svmid eq $dataSvm[$k]['id']">selected</if> >{$vo.cname}</option>
+                </foreach>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">产品图片</label>
+              <div class="col-sm-10">
+              <if condition="$data['picture_path']">
+                <input type="hidden" name="picture_path" value="{$data['picture_path']}">
+                <input type="file" name="picturePath" onchange="previewImage(this)" id="exampleInputFile">
+              <else/>
+                <input type="file" name="picture_path" onchange="previewImage(this)" id="exampleInputFile">
+              </if>
+                <p class="text-danger">*产品图片尺寸418x416最佳</p>
+                <div id="preview">
+                    <img id="imghead" width=118 height=116 border=0 src="{$data.picture_path}">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">原价</label>
+              <div class="col-sm-10">
+                <input type="text" name="original_cost" class="form-control" placeholder="请输入产品原价" value="{$data.original_cost}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">促销价</label>
+              <div class="col-sm-10">
+                <input type="text" name="promotion_price" class="form-control" placeholder="请输入产品促销价" value="{$data.promotion_price}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
+              <div class="col-sm-10">
+                <input type="text" name="sort" class="form-control" placeholder="数字越小越靠前，如果不输入则默认为0" value="{$data.sort}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
+              <div class="col-sm-10">
+                <label class="radio-inline">
+                  <input type="radio" name="status" id="inlineRadio1" value="1" <if condition="$data.status eq 1">checked<else/>checked</if> > 显示
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="status" id="inlineRadio1" value="2" <if condition="$data.status eq 2">checked</if> > 隐藏
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+<script src="/Admin/Apps/Admin/View/validate/product.js"></script>

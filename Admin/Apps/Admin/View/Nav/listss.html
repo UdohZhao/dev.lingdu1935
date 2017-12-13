@@ -1,0 +1,82 @@
+<include file="Layouts/headerss" />
+<include file="Layouts/menuss" />
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 导航管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">导航列表</h3>
+        </div>
+        <div class="panel-body">
+        <form class="form-inline" action="/Admin/Nav/listss" method="post">
+          <div class="form-group" style="float:right;">
+            <input type="text" name="search" class="form-control" id="inputPassword2" placeholder="请输入搜索关键字">
+          <button type="submit" class="btn btn-default">确定</button>
+          </div>
+        </form>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>导航名称</th>
+                  <th>所属类型</th>
+                  <th>排序</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <if condition="empty($data)">
+                <tr>
+                <td colspan="6"><h4>暂无数据!</h4></td>
+                </tr>
+                <else/>
+                  <foreach name="data" item="vo">
+                    <tr>
+                    <td>{$vo.ctime|date='Y/m/d H:i:s',###}</td>
+                    <td>{$vo.cname}</td>
+                    <td>
+                    <eq name="vo.type" value="1">全部产品</eq>
+                    <eq name="vo.type" value="2">单类产品</eq>
+                    <eq name="vo.type" value="3">列表页</eq>
+                    <eq name="vo.type" value="4">单页面</eq>
+                    <eq name="vo.type" value="5">热销榜单</eq>
+                    <eq name="vo.type" value="6">新品上市</eq>
+                    </td>
+                    <td>{$vo.sort}</td>
+                    <td>
+                      <eq name="vo.status" value="1">
+                        <p class="text-success">显示</p>
+                      <else/>
+                        <p class="text-danger">隐藏</p>
+                      </eq>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-xs" onclick="javascript:window.location.href = '/Admin/Nav/index/id/{$vo.id}' ">修改</button>
+                        <button type="button" class="btn btn-primary btn-xs">删除</button>
+                        <eq name="vo.type" value="1">
+                        <button type="button" class="btn btn-link btn-xs" onclick="javascript:window.location.href = '/Admin/Allproducts/index/id/{$vo.id}' ">配置页面</button>
+                        </eq>
+                        <eq name="vo.type" value="2">
+                        <button type="button" class="btn btn-link btn-xs" onclick="javascript:window.location.href = '/Admin/Svmerchandise/index/id/{$vo.id}' ">配置页面</button>
+                        </eq>
+                    </td>
+                    </tr>
+                  </foreach>
+                </if>
+              </tbody>
+            </table>
+          <div style="float:right;">
+            {$page}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+
+

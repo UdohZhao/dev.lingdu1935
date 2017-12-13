@@ -1,0 +1,87 @@
+<include file="Layouts/headerss" />
+<link rel="stylesheet" type="text/css" href="/Public/common/jQuery.filer/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/Public/common/jQuery.filer/css/jquery.filer.css">
+<link rel="stylesheet" type="text/css" href="/Public/common/jQuery.filer/css/jquery.filer-dragdropbox-theme.css">
+<link rel="stylesheet" type="text/css" href="/Public/common/jQuery.filer/css/tomorrow.css">
+<link rel="stylesheet" type="text/css" href="/Public/common/jQuery.filer/css/custom.css"></head>
+<include file="Layouts/menuss" />
+  <!-- Page -->
+  <div class="page animsition">
+    <div class="page-header">
+      <h1 class="page-title"># 站点管理</h1>
+    </div>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">站点配置</h3>
+        </div>
+        <div class="panel-body">
+        <form id="siteForm" class="form-horizontal" action="/Admin/Site/index/id/{$data.id}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">网站名称</label>
+            <div class="col-sm-10">
+              <input type="text" name="site_name" class="form-control" id="inputEmail3" placeholder="请输入网站名称" value="{$data.site_name}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Logo图片</label>
+            <div class="col-sm-10">
+              <div class="col-md-6">
+                <input type="file" name="logo_path" id="demo-fileInput-6">
+                <p class="text-danger">Login图片尺寸 360 x 100 效果最佳</p>
+              </div>
+              <if condition="$data.logo_path">
+                <input type="hidden" name="logo_path" value="{$data.logo_path}"/>
+                <img src="{$data.logo_path}" style="width:150px;height:50px;"/>
+              </if>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">banner图片</label>
+            <div class="col-sm-10">
+              <div class="col-md-6">
+                <input type="file" name="banner_path[]" id="demo-fileInput-4" multiple>
+                <p class="text-danger">banner图片尺寸 1920 x 650 效果最佳</p>
+              </div>
+              <if condition="$data.banner_path">
+                <foreach name="data.banner_path" item="vo">
+                <input type="hidden" name="banner_path[]" value="{$vo}"/>
+                  <img src="{$vo}" style="width:250px;height:150px;"/>
+                </foreach>
+              </if>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">备案信息&版权所有</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" name="copyright" rows="3">{$data.copyright}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="status" id="inlineRadio3" value="1" <if condition="$data.status eq 1">checked<else/>checked</if> > 开启站点
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="status" id="inlineRadio3" value="2" <if condition="$data.status eq 2">checked</if> > 关闭站点
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page -->
+<include file="Layouts/footerss" />
+<script src="/Public/common/jQuery.filer/js/jquery.filer.min.js" type="text/javascript"></script>
+<script src="/Public/common/jQuery.filer/js/prettify.js" type="text/javascript"></script>
+<script src="/Public/common/jQuery.filer/js/scripts.js" type="text/javascript"></script>
+<script src="/Public/common/jQuery.filer/js/custom.js" type="text/javascript"></script>
+<script src="/Admin/Apps/Admin/View/validate/site.js" type="text/javascript"></script>

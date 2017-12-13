@@ -1,0 +1,130 @@
+<include file="./Apps/Home/View/Common/layouts/header.html" />
+<link rel="stylesheet" type="text/css" href="/Apps/Home/View/Common/css/index.css">
+<include file="./Apps/Home/View/Common/layouts/nav.html" />
+<include file="./Apps/Home/View/Common/layouts/banner.html" />
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <p id="hotline">
+        <em><span style="font-size:26px;color:#C40000;">热销榜单</span></em>
+      </p>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 hotcakes">
+        <div class="col-md-5 hotoneimg">
+            <img src="{$dataMShot.0.picture_path}">
+        </div>
+        <div class="col-md-5 hotonetitle">
+            <h3>{$dataMShot.0.title}</h3>
+            <p class="hotonedivision"><h4>以精湛的制酒工艺，铸造非凡的优良传统，一直致力打造品质的干邑。</h4></p>
+            <p style="margin-top:30px;"><span style="font-family:微软雅黑;"><span style="font-size:30px;color:#FF0000;"><span style="font-size:18px;color:#C40000;">￥</span></span><strong><span style="font-size:30px;color:#FF0000;"><span style="font-size:36px;color:#C40000;">{$dataMShot.0.promotion_price}</span></span></strong><span style="font-size:30px;color:#FF0000;"><br></span></span></p>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 hotcakes">
+        <div class="col-md-5 hotoneimg" style="float:right;">
+            <img src="{$dataMShot.1.picture_path}">
+        </div>
+        <div class="col-md-5 hotonetitle">
+            <h3>{$dataMShot.1.title}</h3>
+            <p class="hotonedivision"><h4>以精湛的制酒工艺，铸造非凡的优良传统，一直致力打造品质的干邑。</h4></p>
+            <p style="margin-top:30px;"><span style="font-family:微软雅黑;"><span style="font-size:30px;color:#FF0000;"><span style="font-size:18px;color:#C40000;">￥</span></span><strong><span style="font-size:30px;color:#FF0000;"><span style="font-size:36px;color:#C40000;">{$dataMShot.1.promotion_price}</span></span></strong><span style="font-size:30px;color:#FF0000;"><br></span></span></p>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 hotcakes">
+        <div class="col-md-5 hotoneimg" style="float:right;">
+            <img src="{$dataMShot.2.picture_path}">
+        </div>
+        <div class="col-md-5 hotonetitle">
+            <h3>{$dataMShot.2.title}</h3>
+            <p class="hotonedivision"><h4>以精湛的制酒工艺，铸造非凡的优良传统，一直致力打造品质的干邑。</h4></p>
+            <p style="margin-top:30px;"><span style="font-family:微软雅黑;"><span style="font-size:30px;color:#FF0000;"><span style="font-size:18px;color:#C40000;">￥</span></span><strong><span style="font-size:30px;color:#FF0000;"><span style="font-size:36px;color:#C40000;">{$dataMShot.2.promotion_price}</span></span></strong><span style="font-size:30px;color:#FF0000;"><br></span></span></p>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <p id="newline">
+        <em><span style="font-size:26px;color:#C40000;">新品上市</span></em>
+      </p>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <ul class="list-inline newarrival">
+        <foreach name="dataMSnew" item="vo" key="k">
+          <li class="col-md-6">
+            <img src="{$vo.picture_path}">
+            <h4>{$vo.title}</h4>
+            <p><strong style="font-size:16px;color:#C40000;">¥{$vo.promotion_price}</strong>&nbsp;&nbsp;&nbsp;<del>¥{$vo.original_cost}</del></p>
+          </li>
+        </foreach>
+        </ul>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<div class="row" id="simplegraph">
+<img src="{$dataSvm.banner_path}" style="width:100%;" />
+</div>
+<!-- 加盟 start -->
+<div class="row">
+  <div class="col-md-1">&nbsp;</div>
+  <div class="col-md-10">
+    <img src="/Apps/Home/View/Common/img/tojoin.png" style="width: 100%;" />
+  </div>
+  <div class="col-md-1">&nbsp;</div>
+</div>
+<!-- 加盟 end -->
+<div class="row">
+  <div class="col-md-12 singlekind">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="col-md-7 singlekindtitle">
+          <h3>{$dataSvm.show_title}</h3>
+          <p>{$dataSvm.descriptionss}</p>
+      </div>
+      <div class="col-md-3 singlekindimg">
+        <img src="{$dataSvm.merchandise_path}"/>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <ul class="list-inline newarrival">
+        <foreach name="dataSvma" item="vo" key="k">
+          <li class="col-md-6">
+            <img src="{$vo.picture_path}">
+            <h4>{$vo.title}</h4>
+            <p><strong style="font-size:16px;color:#C40000;">¥{$vo.promotion_price}</strong></p>
+          </li>
+        </foreach>
+        </ul>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<include file="./Apps/Home/View/Common/layouts/ad.html" />
+<include file="./Apps/Home/View/Common/layouts/footer.html" />
+
+
+

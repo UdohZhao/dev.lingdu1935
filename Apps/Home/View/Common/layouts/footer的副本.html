@@ -1,0 +1,24 @@
+<div class="row navfooterss">
+  <div class="col-md-12 navfooter">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-5 navfooterlogo">
+      <a href="/"><img src="{$dataSite.logo_path}" style="background-color: #fff;" /></a>
+      {$dataSite.copyright}
+    </div>
+    <div class="col-md-5 navfootersss">
+      <ul class="list-inline" style="color: #ffff">
+        <li class="col-md-2"><a href="/" style="color: #fff;">首页</a></li>
+        <foreach name="dataNav" item="vo" key="k">
+          <li class="col-md-2"><a href="{$vo.jumpUrl}" style="color: #fff;">{$vo.cname}</a></li>
+        </foreach>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 引入jQuery -->
+<script src="/Public/common/jQuery/jquery-3.1.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

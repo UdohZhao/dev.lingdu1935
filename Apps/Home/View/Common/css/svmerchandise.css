@@ -1,0 +1,155 @@
+#navpills{
+  line-height:40px;
+  font-size:18px;
+  margin-top: 30px;
+}
+#navul {
+  text-align: center;
+  cursor:pointer;
+}
+#navul li{
+  width:120px;
+  color:#FFFFFF;
+}
+#navul li.active a{
+  background-color:#c40100;
+}
+#navul li a:hover{
+  background-color:#c40100;
+  display: block;
+  color: #fff;
+}
+#navlogo{
+  line-height:120px;
+  text-align: center;
+}
+.aiimg{
+  margin-top: 10px;
+  text-align: center;
+}
+#bannerss img{
+  height:650px;
+}
+
+.hotcakes{
+  text-align: center;
+  margin-top:30px;
+  height: 464px;
+}
+#hotline{
+  border-top: 1px solid #929292;
+  border-bottom: 1px solid #929292;
+  text-align: center;
+  margin-top:60px;
+}
+.hotoneimg{
+  text-align:right;
+}
+.hotonetitle{
+  text-align: left;
+  margin-top:40px;
+  margin-left: 30px;
+}
+.hotonetitle h4{
+  line-height: 30px;
+}
+.hotonedivision{
+  border:1px solid #929292;
+  margin-top:30px;
+}
+#newline{
+  border-top: 1px solid #929292;
+  border-bottom: 1px solid #929292;
+  text-align: center;
+  margin-top:20px;
+}
+.newarrival{
+  text-align:center;
+  margin-top: 20px;
+}
+.singlekind{
+  text-align: center;
+}
+.singlekindtitle{
+  margin-top: 50px;
+  text-align: left;
+}
+.singlekindimg{
+  text-align: right;
+}
+.singlekindtitle h3{
+  color:#C40000;
+}
+.singlekindtitle p{
+  line-height: 40px;
+}
+.navfooterss{
+  margin-top: 40px;
+}
+.navfooter{
+  line-height: 120px;
+  background-color:#222222;
+  color:#FFFFFF;
+}
+
+.navfootersss{
+  float:right;
+}
+.allmenu{
+  height: 1000px;
+  text-align: center;
+  /*background-color:#f13a3a;*/
+  border-right:2px solid #f13a3a;
+  color: #FFFFFF;
+}
+.allmenu ul{
+  margin-top: 20px;
+}
+.allmenu li{
+  line-height: 50px;
+  font-size: 18px;
+  color: #fff;
+}
+.allmenu li.active a{
+  background-color:#c40100;
+}
+.allmenu li a:hover{
+  background-color:#c40100;
+  display: block;
+  color: #fff;
+}
+.public-footer{
+  margin-top: 40px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.footer-info{
+  margin-top: 20px;
+}
+
+.info-logo{
+  float: right;
+}
+
+.info-bottom{
+  text-align: center;
+}
+
+.alert-model{
+  width: 430px;
+  height: 160px;
+  background-color: #D73037;
+}
+
+.model-content{
+  border-left: 15px solid #D73037;
+  border-right: 15px solid #D73037;
+  border-bottom: 15px solid #D73037;
+  height: 160px;
+  background-color: #fff;
+}
+
+.content-info{
+  margin-top: 10px;
+}
