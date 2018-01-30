@@ -139,3 +139,10 @@
 .content-info{
   margin-top: 10px;
 }
+.img_style{display: inline-block;}
+.marginBot10{margin-bottom: 10px;}
+.wx{position: relative;}
+.wx:hover .img{display: block;}
+.wx .img{position: absolute;top: -120px;right: 0;display: none;width: 100px;height: 100px;}
+.wx:hover span{display: block;}
+.wx span{position: absolute;top: -42px;right: -83px;display: none;background-color: #eee;color: #333;padding: 10px;}
